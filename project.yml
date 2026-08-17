@@ -1,0 +1,16 @@
+name: MasahAlOsrah
+
+options:
+  bundleIdPrefix: com.masahalosrah
+
+targets:
+  MasahAlOsrah:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - MasahAlOsrah
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.masahalosrah.app
+        INFOPLIST_FILE: MasahAlOsrah/Info.plist
