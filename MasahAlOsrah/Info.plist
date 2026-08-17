@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+<key>CFBundleDisplayName</key>
+<string>مسح الأسرة</string>
+<key>CFBundleName</key>
+<string>MasahAlOsrah</string>
+<key>UILaunchScreen</key>
+<dict/>
+</dict>
+</plist>
