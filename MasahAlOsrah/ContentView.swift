@@ -1,20 +1,12 @@
 import SwiftUI
 import WebKit
 
-struct ContentView: View {
-    var body: some View {
-        WebView()
-            .ignoresSafeArea()
-    }
-}
-
-struct WebView: UIViewRepresentable {
+struct ContentView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
-        let view = WKWebView()
-        view.allowsBackForwardNavigationGestures = true
-        view.load(URLRequest(url: URL(string: "https://fesurvey.stats.gov.sa/family/auth/user")!))
-        return view
+        let web = WKWebView()
+        web.allowsBackForwardNavigationGestures = true
+        web.load(URLRequest(url: URL(string:"https://fesurvey.stats.gov.sa/family/auth/user")!))
+        return web
     }
-
     func updateUIView(_ uiView: WKWebView, context: Context) {}
 }
