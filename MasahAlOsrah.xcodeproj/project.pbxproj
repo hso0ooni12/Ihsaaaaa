@@ -3,6 +3,5 @@
  archiveVersion = 1;
  classes = {};
  objectVersion = 56;
- objects = {};
- rootObject = 000000000000000000000000;
+ rootObject = PROJECTROOT;
 }
