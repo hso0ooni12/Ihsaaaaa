@@ -16,6 +16,26 @@ jobs:
       - name: Generate Xcode Project
         run: xcodegen generate
 
-      - name: Build Unsigned IPA
+      - name: Archive iOS App
         run: |
-          xcodebuild           -project MasahAlOsrah.xcodeproj           -scheme MasahAlOsrah           -configuration Release           -sdk iphoneos           CODE_SIGNING_ALLOWED=NO           archive           -archivePath build/MasahAlOsrah.xcarchive
+          xcodebuild \
+          -project MasahAlOsrah.xcodeproj \
+          -scheme MasahAlOsrah \
+          -configuration Release \
+          -sdk iphoneos \
+          -archivePath build/MasahAlOsrah.xcarchive \
+          PRODUCT_BUNDLE_IDENTIFIER=com.masahalosrah.app \
+          CODE_SIGNING_ALLOWED=NO \
+          archive
+
+      - name: Create IPA folder
+        run: |
+          mkdir Payload
+          cp -R build/MasahAlOsrah.xcarchive/Products/Applications/MasahAlOsrah.app Payload/
+          zip -r MasahAlOsrah-Unsigned.ipa Payload
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: MasahAlOsrah-Unsigned-IPA
+          path: MasahAlOsrah-Unsigned.ipa
