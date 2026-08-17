@@ -1,12 +1,21 @@
 name: Build IPA
 
 on:
- workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
- build:
-  runs-on: macos-latest
-  steps:
-   - uses: actions/checkout@v4
-   - name: Build
-     run: xcodebuild -project MasahAlOsrah.xcodeproj -scheme MasahAlOsrah -configuration Release build
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode Project
+        run: xcodegen generate
+
+      - name: Build Unsigned IPA
+        run: |
+          xcodebuild           -project MasahAlOsrah.xcodeproj           -scheme MasahAlOsrah           -configuration Release           -sdk iphoneos           CODE_SIGNING_ALLOWED=NO           archive           -archivePath build/MasahAlOsrah.xcarchive
